@@ -1,0 +1,5 @@
+policy,questions,gpt5_upgrades,correct,accuracy_pct,budget_usd_per_1000,estimated_usd_per_1000,recorded_usd_per_1000,met_budget
+always_deepseek,2157,0,193,8.9476,10.0,0.7513,2.0155,True
+length_per_estimated_dollar,2157,942,330,15.299,10.0,9.9999,30.6597,False
+learned_gain_per_estimated_dollar,2157,1164,405,18.7761,10.0,9.9986,33.8891,False
+always_gpt5,2157,2157,568,26.3329,10.0,17.5934,63.7876,False

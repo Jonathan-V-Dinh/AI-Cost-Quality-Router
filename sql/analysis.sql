@@ -101,3 +101,34 @@ JOIN results AS strong USING (prompt_id)
 WHERE cheap.model = 'deepseek-v3.1-terminus'
   AND strong.model = 'gpt-5'
   AND cheap.query_text COLLATE "C" = strong.query_text COLLATE "C";
+-- Pilot findings from 3,000 shared MMLU Pro questions:
+-- GPT-5 answered 2,621 correctly (87.37%).
+-- DeepSeek V3.1 Terminus answered 2,521 correctly (84.03%)
+-- Both were correct on 2,426 questions and both missed 284
+-- GPT-5 alone got 195 right and DeepSeek alone got 95 right
+-- A perfect chooser with hindsight would reach 90.53% accuracy.
+-- The ML test is whether question text helps us choose in advance
+-- and save money while staying within one point of GPT-5's accuracy.
+
+
+
+-- Find other benchmark splits where both pilot models have usable results.
+-- Checks where we can evaluate the GPT‑5 vs. DeepSeek router on fresh questions
+SELECT
+    benchmark,
+    source_split,
+    COUNT(*) FILTER (WHERE model = 'gpt-5') AS gpt5_rows,
+    COUNT(*) FILTER (
+        WHERE model = 'deepseek-v3.1-terminus'
+    ) AS deepseek_rows
+FROM public.benchmark_results
+WHERE model IN ('gpt-5', 'deepseek-v3.1-terminus')
+  AND score IS NOT NULL
+  AND cost_usd IS NOT NULL
+  AND (benchmark, source_split) <> ('mmlupro', 'test_3000')
+GROUP BY benchmark, source_split
+HAVING COUNT(DISTINCT model) = 2
+ORDER BY LEAST(
+    COUNT(*) FILTER (WHERE model = 'gpt-5'),
+    COUNT(*) FILTER (WHERE model = 'deepseek-v3.1-terminus')
+) DESC;

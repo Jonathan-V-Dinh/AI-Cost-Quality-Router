@@ -1,0 +1,15 @@
+policy,budget_pct,questions,upgrades,rescued,harmed,net_correct,accuracy_pct,recorded_usd_per_1000
+always_deepseek,0,4326,0,0,0,0,24.4568,0.1857
+learned_gain,5,4326,216,75,15,60,25.8437,0.7735
+longest_prompt_first,5,4326,216,57,8,49,25.5895,0.9317
+learned_gain,10,4326,432,136,29,107,26.9302,1.4388
+longest_prompt_first,10,4326,432,108,19,89,26.5141,1.667
+learned_gain,20,4326,865,265,57,208,29.2649,2.8064
+longest_prompt_first,20,4326,865,222,37,185,28.7332,3.0618
+learned_gain,30,4326,1297,391,76,315,31.7383,4.2073
+longest_prompt_first,30,4326,1297,345,58,287,31.0911,4.4004
+learned_gain,50,4326,2163,630,121,509,36.2228,6.863
+longest_prompt_first,50,4326,2163,591,105,486,35.6912,7.111
+learned_gain,75,4326,3244,946,180,766,42.1637,10.1121
+longest_prompt_first,75,4326,3244,914,160,754,41.8863,10.2494
+always_gpt5,100,4326,4326,1240,226,1014,47.8964,13.2335
